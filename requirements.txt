@@ -1,2 +1,4 @@
-mkdocs==1.1.2
-mkdocs-material==7.0.5
+pip install --upgrade pip
+pip install mkdocs
+pip install mkdocs-material==9.4.1 mkdocs-glightbox
+mkdocs-material-extensions>=1.0
