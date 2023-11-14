@@ -1,6 +1,6 @@
 # Project information
 site_name: EASY CV & NLP
-site_url:
+site_url: https://cv-blog.kouzhenyang.com
 site_author: kouzhenyang
 site_description: 轻松学CV和NLP
 docs_dir: docs
@@ -64,6 +64,7 @@ theme:
     logo: logo
     repo: fontawesome/brands/github
     edit: material/file-edit-outline
+    annotation: material/arrow-right-circle
 
 extra:
   social:
@@ -134,17 +135,13 @@ extra_css:
 nav:
   - 0. &nbsp; 前言:
       # [icon: material/book-open-outline]
-      - chapter01_preface/index.md
       - 1. &nbsp; 关于本书: chapter01_preface/about_the_book.md
       - 2. &nbsp; 如何使用本书: chapter01_preface/suggestions.md
-      - 3. &nbsp; 小结: chapter01_preface/summary.md
   - 1. &nbsp; 初识人工智能:
       # [icon: material/calculator-variant-outline]
-      - chapter02_introduction/index.md
       - 1.1. &nbsp; 人工智能无处不在: chapter02_introduction/artificial_intelligence_is_everywhere.md
       - 1.2. &nbsp; 人工智能是什么: chapter02_introduction/what_is_artificial_intelligence.md
       - 1.3. &nbsp; 计算机视觉是什么: chapter02_introduction/what_is_computer_vision.md
-      - 1.4. &nbsp; 小结: chapter02_introduction/summary.md
   - 2. &nbsp; 数学基础:
       # [icon: material/timer-sand]
       - chapter03_math_basic/index.md
@@ -181,7 +178,7 @@ nav:
       - chapter06_feature_selection_and_feature_extraction/index.md
       - 4.1. &nbsp; 特征选择 *: chapter06_feature_selection_and_feature_extraction/feature_selection.md
       - 4.2. &nbsp; 特征提取 *: chapter06_feature_selection_and_feature_extraction/feature_extraction.md
-      - 4.3. &nbsp; PCA算法 *: chapter06_feature_selection_and_feature_extraction/pca.md
+      - 4.3. &nbsp; 边缘提取 *: chapter06_feature_selection_and_feature_extraction/edge_detection.md
       - 4.4. &nbsp; 小结 *: chapter06_feature_selection_and_feature_extraction/summary.md
   - 6. &nbsp; 附录:
       # [icon: material/help-circle-outline]

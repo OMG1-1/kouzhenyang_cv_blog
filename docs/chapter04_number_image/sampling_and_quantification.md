@@ -20,6 +20,8 @@
 
 上采样，也被称为图像插值或放大图像，是一种将图像的尺寸扩大到更高分辨率的技术手段。这种操作的主要目的是生成我们所需要的尺寸，常用于特征融合。
 
+- [特征融合]:
+
 > **“牛眼”现象**
 >
 > 在图像处理中，“牛眼”现象是一个关于插值算法的特殊问题。具体来说，它是某些偏大或偏小的数据在插值过程中形成的以插值点为圆心的圈状现象。
@@ -54,61 +56,170 @@
 
 #### 原理
 
-双线性内插法是利用待求像素四个邻像素的灰度在两个方向上作线性内插，如下图所示：
-![](https://cdn.nlark.com/yuque/0/2023/png/28755494/1698384432111-734532a7-4fe3-478f-8afb-4dc77ffb22fa.png#averageHue=%23020101&clientId=uf66c30c8-1d95-4&from=paste&id=u95981926&originHeight=441&originWidth=580&originalType=url&ratio=2&rotation=0&showTitle=false&status=done&style=none&taskId=u05597ecd-5cdc-48c9-96a0-0c49ad9924b&title=)
+??? note "原理（原始版本）"
 
-对于 $(i, j+v)，f(i, j) 到 f(i, j+1)$ 的灰度变化为线性关系，则有：
-$f(i, j+v) = [f(i, j+1) – f(i, j)] * v + f(i, j)$
-同理对于 $(i+1, j+v)$ 则有：
-$f(i+1, j+v) = [f(i+1, j+1) – f(i+1, j)] * v + f(i+1, j)$
-从 $f(i, j+v) 到 f(i+1, j+v)$ 的灰度变化也为线性关系，由此可推导出待求像素灰度的计算式如下：
-$f(i+u, j+v) = (1-u) * (1-v) * f(i, j) + (1-u) * v * f(i, j+1) + u * (1-v) * f(i+1, j) + u * v * f(i+1, j+1)$
+    双线性内插法是利用待求像素四个邻像素的灰度在两个方向上作线性内插，如下图所示：
+
+    ![Alt text](sampling_and_quantification.assets/double1.png)
+
+    对于 $(i, j+v)，f(i, j) 到 f(i, j+1)$ 的灰度变化为线性关系，则有：
+    $$f(i, j+v) = [f(i, j+1) – f(i, j)] * v + f(i, j)$$
+    同理对于 $(i+1, j+v)$ 则有：
+    $$f(i+1, j+v) = [f(i+1, j+1) – f(i+1, j)] * v + f(i+1, j)$$
+    从 $f(i, j+v) 到 f(i+1, j+v)$ 的灰度变化也为线性关系，由此可推导出待求像素灰度的计算式如下：
+    $$f(i+u, j+v) = (1-u) * (1-v) * f(i, j) + (1-u) * v * f(i, j+1) + u * (1-v) * f(i+1, j) + u * v * f(i+1, j+1)$$
+
+???+ note "原理（简化版本）"
+
+    ![待求像素的灰度值由其周围四个像素的灰度值决定，这四个像素在两个方向上分布](sampling_and_quantification.assets/double2.jpg)
+
+    $f(P) = f(x,y)$；
+
+    $f(R_1) = f(x,y_1)$，
+    $f(R_2) = f(x,y_2)$；
+
+    $f(Q_{11}) = f(x_1,y_1)$，
+    $f(Q_{12}) = f(x_1,y_2)$，
+    $f(Q_{21}) = f(x_2,y_1)$，
+    $f(Q_{22}) = f(x_2,y_2)$
+
+    在 x 方向做插值：
+
+    $$
+    f(R_1) = \frac{x_2-x}{x_2-x_1}f(Q_{11}) + \frac{x-x_1}{x_2-x_1}f(Q_{21})\\
+
+    f(R_2) = \frac{x_2-x}{x_2-x_1}f(Q_{12}) + \frac{x-x_1}{x_2-x_1}f(Q_{22})
+    $$
+
+    在 y 方向做插值：
+
+    $$
+    f(P) = \frac{y_2-y}{y_2-y_1}f(R_1) + \frac{y-y_1}{y_2-y_1}f(R_2)
+    $$
+
+    有：
+
+    $$
+    \begin{align}
+    f(p) &=
+    \frac{y_2-y}{y_2-y_1}f(R_1)
+    +
+    \frac{y-y_1}{y_2-y_1}f(R_2) \\
+    &=
+    \frac{y_2-y}{y_2-y_1}
+    \left[
+    \frac{x_2-x}{x_2-x_1}f(Q_{11})
+    +
+    \frac{x-x_1}{x_2-x_1}f(Q_{21})
+    \right]
+    +
+    \frac{y-y_1}{y_2-y_1}
+    \left[
+    \frac{x_2-x}{x_2-x_1}f(Q_{12})
+    +
+    \frac{x-x_1}{x_2-x_1}f(Q_{22})
+    \right]
+    \end{align}
+    $$
+
+    因为图像像素的灰度值是连续的，所以上式中 $x_2-x_1$,$y_2-y_1$ 均为 1
+
 双线性内插法的计算比最邻近点法复杂，计算量较大，但没有灰度不连续的缺点，结果基本令人满意。它具有低通滤波性质，使高频分量受损，图像轮廓可能会有一点模糊。
+
+???+ "几何中心点重合证明"
+
+    设：
+
+    原图像 $M \times M$，目标图像 $N \times N$
+    1. 目标图像在原图像坐标系的位置为 $(x, y)$
+    2. 原图坐标$(x_m,y_m), m = 0,1,2,...,M-1$，几何中心 $(x_c,y_c), c=\frac{M-1}{2}$
+    3. 目标图坐标 $(x_n,y_n), n = 0,1,2,...,N-1$, 几何中心 $(x_d,y_d), d=\frac{N-1}{2}$
+
+    此时
+
+    $$
+    m = n \times \frac{M}{N}
+    $$
+
+    要使几何中心相同，那么必存在一个值$Z$，使得$\frac{M-1}{2}+Z  = (\frac{N-1}{2}+Z)\frac{M}{N}$;
+
+    解：
+
+    $$
+    Z + \frac{M-1}{2} = \frac{(N-1)M}{2N} + \frac{ZM}{N}
+    $$
+
+    移项：
+
+    $$
+    Z - \frac{ZM}{N} = \frac{(N-1)M}{2N} - \frac{M-1}{2}
+    $$
+
+    化简：
+
+    $$
+    Z(1-\frac{M}{N}) = \frac{-M+N}{2N}
+    $$
+
+    化简：
+
+    $$
+    \begin{align}
+    Z(\frac{N-M}{N}) &= \frac{N-M}{2N} \\
+    &=\frac{1}{2}(\frac{N-M}{N})
+    \end{align}
+    $$
+
+    有：$Z =\frac{1}{2}$
+
+    所以：要使两个图像的几何中心点重合，则必须将目标图像的坐标和原图像的坐标同时加$\frac{1}{2}$
 
 #### 双三次插值
 
 双三次插值是一种更复杂的插值方法，它可以在不失真的情况下对图像进行放大，因此在图像处理中得到了广泛的应用。但是，由于其计算量大，所以在实际应用中需要权衡性能和精度。
 
-##### 原理
+??? note "原理"
 
-该方法利用三次多项式$S(x)$求逼近理论上最佳插值函数$sin(x)/x$, 其数学表达式为：
-$S(x) = 
-\begin{cases} 1-2\lvert x \rvert^2 + \lvert x \rvert^3 & \text{if } 0 \le \lvert x \rvert \lt 1 \\
-4-8\lvert x \rvert + 5\lvert x \rvert^2 -\lvert x \rvert^3 & \text{if } 1 \le \lvert x \rvert \lt 2 \\
-0 & \text{if } \lvert x \rvert \le 2
-\end{cases}$
-待求像素(x, y)的灰度值由其周围 16 个灰度值加权内插得到，如下图：
-![](https://cdn.nlark.com/yuque/0/2023/png/28755494/1698384874486-5ce452c8-5c84-4922-93ee-81c2b80f4615.png#averageHue=%23080808&clientId=uf66c30c8-1d95-4&from=paste&id=u1b315ed5&originHeight=428&originWidth=552&originalType=url&ratio=2&rotation=0&showTitle=false&status=done&style=none&taskId=u49a74cd6-3dd7-46a1-99a9-3375cf76bc1&title=)
-待求像素的灰度计算式如下：
-$f(x, y) = f(i+u, j+v) = ABC$
-其中:
+    该方法利用三次多项式$S(x)$求逼近理论上最佳插值函数$sin(x)/x$, 其数学表达式为：
+    $S(x) =
+    \begin{cases} 1-2\lvert x \rvert^2 + \lvert x \rvert^3 & \text{if } 0 \le \lvert x \rvert \lt 1 \\
+    4-8\lvert x \rvert + 5\lvert x \rvert^2 -\lvert x \rvert^3 & \text{if } 1 \le \lvert x \rvert \lt 2 \\
+    0 & \text{if } \lvert x \rvert \le 2
+    \end{cases}$
+    待求像素(x, y)的灰度值由其周围 16 个灰度值加权内插得到，如下图：
 
-$
-A=\begin{pmatrix}
-S(1+v)\\
-S(v)\\
-S(1-v)\\
-S(2-v)
-\end{pmatrix}^T
-$
+    ![Alt text](sampling_and_quantification.assets/triple.png)
 
-$
-B=\begin{pmatrix}
-f(i-1,j-1) & f(i-1,j) & f(i-1,j+1) & f(i-1,j+2)\\
-f(i,j-1) & f(i,j) & f(i,j+1) & f(i,j+2)\\
-f(i+1,j-1) & f(i+1,j) & f(i+1,j+1) & f(i+1,j+2)\\
-f(i+2,j-1) & f(i+2,j) & f(i+2,j+1) & f(i+2,j+2)\\
-\end{pmatrix}
-$
+    待求像素的灰度计算式如下：
+    $f(x, y) = f(i+u, j+v) = ABC$
+    其中:
 
-$
-C=\begin{pmatrix}
-S(1+u)\\
-S(u)\\
-S(1-u)\\
-S(2-u)
-\end{pmatrix}
-$
+    $
+    A=\begin{pmatrix}
+    S(1+v)\\
+    S(v)\\
+    S(1-v)\\
+    S(2-v)
+    \end{pmatrix}^T
+    $
+
+    $
+    B=\begin{pmatrix}
+    f(i-1,j-1) & f(i-1,j) & f(i-1,j+1) & f(i-1,j+2)\\
+    f(i,j-1) & f(i,j) & f(i,j+1) & f(i,j+2)\\
+    f(i+1,j-1) & f(i+1,j) & f(i+1,j+1) & f(i+1,j+2)\\
+    f(i+2,j-1) & f(i+2,j) & f(i+2,j+1) & f(i+2,j+2)\\
+    \end{pmatrix}
+    $
+
+    $
+    C=\begin{pmatrix}
+    S(1+u)\\
+    S(u)\\
+    S(1-u)\\
+    S(2-u)
+    \end{pmatrix}
+    $
 
 三次曲线插值方法计算量较大，但插值后的图像效果最好。
 
@@ -131,14 +242,14 @@ $
 对于下采样，其常用的方法有**池化操作**，比如最大池化和平均池化等。
 池化操作可以通过取平均值或者最大值等方式将一个大的像素块缩小到一个像素值，从而减少特征图的尺寸。
 
-#### 最大池化
+- 最大池化
 
-最大池化是将输入特征图的一个 s\*s 的窗口内的最大值作为输出像素值
+  最大池化是将输入特征图的一个 s\*s 的窗口内的最大值作为输出像素值
 
-#### 平均池化
+- 平均池化
 
-平均池化则是将窗口内的平均值作为输出像素值。
+  平均池化则是将窗口内的平均值作为输出像素值。
 
-#### 方法总结
+- 方法总结
 
-下采样的目的是为了降低计算复杂度，同时增强特征的感受野，使得模型能够更好地处理目标的整体信息。
+  下采样的目的是为了降低计算复杂度，同时增强特征的感受野，使得模型能够更好地处理目标的整体信息。

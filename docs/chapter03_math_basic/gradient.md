@@ -49,8 +49,10 @@ $\nabla f(x, y, z, ...) =
    2. 然后计算所有样本点与直线的偏离程度
    3. 根据误差大小来调整斜率$w$
    4. 找到差距（代价函数）
+      ![代价函数1](gradient.assets/daijia1.png)
 
-   ![image.png](https://cdn.nlark.com/yuque/0/2023/png/28755494/1697969570364-b8e41ae6-05af-42be-b9a9-8caa4749051c.png#averageHue=%23030302&clientId=u94a33e38-13fa-4&from=paste&height=389&id=u24146f77&originHeight=778&originWidth=1294&originalType=binary&ratio=2&rotation=0&showTitle=false&size=187382&status=done&style=none&taskId=u42749781-a5da-499e-be4f-a80a0356f05&title=&width=647)![image.png](https://cdn.nlark.com/yuque/0/2023/png/28755494/1697969545172-2df16213-541e-4404-8666-3a0166f11dfc.png#averageHue=%23050505&clientId=u94a33e38-13fa-4&from=paste&height=400&id=ub7fdb3e6&originHeight=800&originWidth=1254&originalType=binary&ratio=2&rotation=0&showTitle=false&size=135004&status=done&style=none&taskId=u0f0c3da8-e1e1-4974-b8a1-c37b23501f9&title=&width=627)
+      ![代价函数2](gradient.assets/daijia2.png)
+
    量化数据的偏离程度，即误差（常见的量化方式有：均方误差【误差平方和的平均值】）
 
 - 得到误差函数，它代表了学习所需要付出的代价，故常被称为代价函数
@@ -59,46 +61,49 @@ $\nabla f(x, y, z, ...) =
 
 3. 明确搜索方向（梯度计算）
 
-   ![image.png](https://cdn.nlark.com/yuque/0/2023/png/28755494/1697969453959-7b1189bf-274c-4506-b91b-0db7264d1c88.png#averageHue=%23040303&clientId=u94a33e38-13fa-4&from=paste&height=327&id=u48085d58&originHeight=654&originWidth=1442&originalType=binary&ratio=2&rotation=0&showTitle=false&size=192301&status=done&style=none&taskId=u2cfc53af-ca3a-405e-a5ab-0a0f8202387&title=&width=721)
+   ![搜索方向](gradient.assets/search_deriction.png)
 
 4. 大胆的往前走吗？（学习率）
 
-   ![image.png](https://cdn.nlark.com/yuque/0/2023/png/28755494/1697969453959-7b1189bf-274c-4506-b91b-0db7264d1c88.png#averageHue=%23040303&clientId=u94a33e38-13fa-4&from=paste&height=327&id=RbNGK&originHeight=654&originWidth=1442&originalType=binary&ratio=2&rotation=0&showTitle=false&size=192301&status=done&style=none&taskId=u2cfc53af-ca3a-405e-a5ab-0a0f8202387&title=&width=721)
-   ![image.png](https://cdn.nlark.com/yuque/0/2023/png/28755494/1697969669972-58d1e191-9643-4b8b-9126-c9a8d73fab2a.png#averageHue=%23030202&clientId=u94a33e38-13fa-4&from=paste&height=336&id=ua807bbb2&originHeight=672&originWidth=1462&originalType=binary&ratio=2&rotation=0&showTitle=false&size=160295&status=done&style=none&taskId=u7d05ffe0-8cbf-4c4a-9dc3-2be549c8f10&title=&width=731)
+   ![学习率](gradient.assets/learn_rate.png)
 
 5. 不达目的不罢休（循环迭代）
 
    循环计算梯度和按学习率前进这两步，直到找到最低点。
-   ![image.png](https://cdn.nlark.com/yuque/0/2023/png/28755494/1697969453959-7b1189bf-274c-4506-b91b-0db7264d1c88.png#averageHue=%23040303&clientId=u94a33e38-13fa-4&from=paste&height=327&id=BgXXy&originHeight=654&originWidth=1442&originalType=binary&ratio=2&rotation=0&showTitle=false&size=192301&status=done&style=none&taskId=u2cfc53af-ca3a-405e-a5ab-0a0f8202387&title=&width=721)
-   ![image.png](https://cdn.nlark.com/yuque/0/2023/png/28755494/1697969669972-58d1e191-9643-4b8b-9126-c9a8d73fab2a.png#averageHue=%23030202&clientId=u94a33e38-13fa-4&from=paste&height=336&id=pf1Wj&originHeight=672&originWidth=1462&originalType=binary&ratio=2&rotation=0&showTitle=false&size=160295&status=done&style=none&taskId=u7d05ffe0-8cbf-4c4a-9dc3-2be549c8f10&title=&width=731)
 
 #### 没这么简单
 
 在实际工作中，训练样本千奇百怪，代价函数千变万化，不太可能是简单的抛物线
 如：
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/28755494/1697973161844-2cdb3d23-6c25-45bd-a8f9-66a970f8b237.png#averageHue=%23838481&clientId=u94a33e38-13fa-4&from=paste&height=381&id=ue3f2ce61&originHeight=762&originWidth=1296&originalType=binary&ratio=2&rotation=0&showTitle=false&size=589134&status=done&style=none&taskId=ubfb1b29c-df8a-4c31-a9d6-0ef73433807&title=&width=648)
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/28755494/1697973143029-beb32951-853e-4d5a-b74a-f7365d43ea7b.png#averageHue=%23020201&clientId=u94a33e38-13fa-4&from=paste&height=343&id=u313f96c2&originHeight=686&originWidth=1372&originalType=binary&ratio=2&rotation=0&showTitle=false&size=220602&status=done&style=none&taskId=ua2cc258d-8340-4551-b5b6-6075ffd2229&title=&width=686)
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/28755494/1697973207237-e4d8b9cd-1778-4f30-b301-9c807209b43e.png#averageHue=%2326211a&clientId=u94a33e38-13fa-4&from=paste&height=427&id=ud01b3600&originHeight=854&originWidth=1424&originalType=binary&ratio=2&rotation=0&showTitle=false&size=680364&status=done&style=none&taskId=u0d8e2cfc-4ee3-482a-a41a-f98c86e448c&title=&width=712)
+
+![代价函数表现3](gradient.assets/daijia3.png)
+
+![代价函数表现4](gradient.assets/daijia4.png)
+
+![代价函数表现5](gradient.assets/daijia5.png)
 
 #### 梯度下降法的各种变体
 
 ##### Batch Gradient Descent(BGD)
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/28755494/1697973288402-2d533501-3993-4cb4-8594-63dd581078c3.png#averageHue=%23060604&clientId=u94a33e38-13fa-4&from=paste&height=375&id=ud6236378&originHeight=750&originWidth=1374&originalType=binary&ratio=2&rotation=0&showTitle=false&size=438964&status=done&style=none&taskId=u9efc2bf4-94db-4cdc-85ed-ca1ea032dd2&title=&width=687)
+![BGD](gradient.assets/BGD.png)
+
 特点：全部训练样本参与训练
 优点：保证算法精确度，找到全局最优点
 缺点：计算速度慢
 
 ##### Stochastic Gradient Descent(SGD)
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/28755494/1697973502319-67f4fa09-aee9-4c09-8bc1-eaa438aacb1a.png#averageHue=%23080707&clientId=u94a33e38-13fa-4&from=paste&height=408&id=ued8b5ed9&originHeight=816&originWidth=1350&originalType=binary&ratio=2&rotation=0&showTitle=false&size=423279&status=done&style=none&taskId=ubb1adbdb-3c39-44c5-9c14-1eda4c00981&title=&width=675)
+![SGD](gradient.assets/SGD.png)
+
 特点：每下降一步只需一个样本参与计算
 优点：速度快
 缺点：精准度较差
 
 ##### MBGD
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/28755494/1697974423051-ebd3cf51-c799-49b9-88c8-0e79f60ec355.png#averageHue=%23050504&clientId=u94a33e38-13fa-4&from=paste&height=368&id=ub941dd46&originHeight=736&originWidth=1416&originalType=binary&ratio=2&rotation=0&showTitle=false&size=434380&status=done&style=none&taskId=u91c81492-1f5b-4c9a-8389-ce1ad7a360a&title=&width=708)
+![MBGD](gradient.assets/MBGD.png)
+
 特点：每下降一步只需一批次样本参与计算
 优点：速度较快的同时保证了一定的精准度
 
