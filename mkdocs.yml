@@ -128,8 +128,8 @@ extra_javascript:
   # - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
 
 extra_css:
-  # - stylesheets/extra.css
-  # - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+  - stylesheets/extra.css
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
 
 # Page tree
 nav:
@@ -158,28 +158,28 @@ nav:
       - chapter04_number_image/index.md
       - 3.1. &nbsp; 像素&分辨率: chapter04_number_image/pixels_and_Resolution.md
       - 3.2. &nbsp; 颜色模式: chapter04_number_image/color_mode.md
-      - 3.3. &nbsp; 频率与幅值 *: chapter04_number_image/frequency_and_amplitude.md
-      - 3.4. &nbsp; 灰度、通道和对比度 *: chapter04_number_image/grayscale_and_channel_and_contrast.md
-      - 3.5. &nbsp; 常用第三方库 *: chapter04_number_image/commonly_used_third-party_libraries.md
-      - 3.6. &nbsp; 取样和量化 *: chapter04_number_image/sampling_and_quantification.md
-      - 3.7. &nbsp; 直方图 *: chapter04_number_image/histogram.md
-      - 3.8. &nbsp; 卷积 *: chapter04_number_image/convolution.md
-      - 3.9. &nbsp; 滤波 *: chapter04_number_image/filtering.md
-      - 3.10. &nbsp; 小结 *: chapter04_number_image/summary.md
+      - 3.3. &nbsp; 频率与幅值: chapter04_number_image/frequency_and_amplitude.md
+      - 3.4. &nbsp; 灰度、通道和对比度: chapter04_number_image/grayscale_and_channel_and_contrast.md
+      - 3.5. &nbsp; 常用第三方库: chapter04_number_image/commonly_used_third-party_libraries.md
+      - 3.6. &nbsp; 取样和量化: chapter04_number_image/sampling_and_quantification.md
+      - 3.7. &nbsp; 直方图: chapter04_number_image/histogram.md
+      - 3.8. &nbsp; 卷积: chapter04_number_image/convolution.md
+      - 3.9. &nbsp; 滤波: chapter04_number_image/filtering.md
+      - 3.10. &nbsp; 小结: chapter04_number_image/summary.md
   - 4. &nbsp; 图像滤波器:
       # [icon: material/shape-outline]
       - chapter05_image_filter/index.md
-      - 4.1. &nbsp; 图像噪声 *: chapter05_image_filter/image_noise.md
-      - 4.2. &nbsp; 图像滤波 *: chapter05_image_filter/image_filter.md
-      - 4.3. &nbsp; 图像增强 *: chapter05_image_filter/image_enhancement.md
-      - 4.4. &nbsp; 小结 *: chapter05_image_filter/summary.md
+      - 4.1. &nbsp; 图像噪声: chapter05_image_filter/image_noise.md
+      - 4.2. &nbsp; 图像滤波: chapter05_image_filter/image_filter.md
+      - 4.3. &nbsp; 图像增强: chapter05_image_filter/image_enhancement.md
+      - 4.4. &nbsp; 小结: chapter05_image_filter/summary.md
   - 5. &nbsp; 特征选择&特征提取:
       # [icon: material/shape-outline]
       - chapter06_feature_selection_and_feature_extraction/index.md
-      - 4.1. &nbsp; 特征选择 *: chapter06_feature_selection_and_feature_extraction/feature_selection.md
-      - 4.2. &nbsp; 特征提取 *: chapter06_feature_selection_and_feature_extraction/feature_extraction.md
-      - 4.3. &nbsp; 边缘提取 *: chapter06_feature_selection_and_feature_extraction/edge_detection.md
-      - 4.4. &nbsp; 小结 *: chapter06_feature_selection_and_feature_extraction/summary.md
+      - 4.1. &nbsp; 特征选择: chapter06_feature_selection_and_feature_extraction/feature_selection.md
+      - 4.2. &nbsp; 特征提取: chapter06_feature_selection_and_feature_extraction/feature_extraction.md
+      - 4.3. &nbsp; 边缘提取: chapter06_feature_selection_and_feature_extraction/edge_detection.md
+      - 4.4. &nbsp; 小结: chapter06_feature_selection_and_feature_extraction/summary.md
   - 6. &nbsp; 附录:
       # [icon: material/help-circle-outline]
       - chapter_appendix/index.md
