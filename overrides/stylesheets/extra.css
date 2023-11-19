@@ -10,8 +10,9 @@
 
   --md-code-fg-color: #1d1d20;
 
-  --md-accent-fg-color: #999;
-
+  /* --md-accent-fg-color: #999; */
+  --md-accent-fg-color:                hsla(#{hex2hsl($clr-indigo-a200)}, 1);
+  --md-accent-bg-color:                hsla(0, 0%, 100%, 1);
   --md-admonition-fg-color: #1d1d20;
 
   --md-typeset-color: #1d1d20;

@@ -64,7 +64,7 @@ theme:
     logo: logo
     repo: fontawesome/brands/github
     edit: material/file-edit-outline
-    annotation: material/arrow-right-circle
+    annotation: material/leaf-circle
 
 extra:
   social:
@@ -133,10 +133,9 @@ extra_css:
 
 # Page tree
 nav:
-  - 0. &nbsp; 前言:
+  - 前言:
       # [icon: material/book-open-outline]
-      - 1. &nbsp; 关于本书: chapter01_preface/about_the_book.md
-      - 2. &nbsp; 如何使用本书: chapter01_preface/suggestions.md
+      - 关于博客: preface/about_the_book.md
   - 1. &nbsp; 初识人工智能:
       # [icon: material/calculator-variant-outline]
       - 1.1. &nbsp; 人工智能无处不在: chapter02_introduction/artificial_intelligence_is_everywhere.md
@@ -150,40 +149,39 @@ nav:
       - 2.3. &nbsp; 矩阵: chapter03_math_basic/matrix.md
       - 2.4. &nbsp; 导数&偏导数: chapter03_math_basic/derivative_and_partial_derivative.md
       - 2.5. &nbsp; 梯度: chapter03_math_basic/gradient.md
-      - 2.6. &nbsp; 概率学基础: chapter03_math_basic/fundamentals_of_probability.md
+      - 2.6. &nbsp; 概率学: chapter03_math_basic/probability.md
       - 2.7. &nbsp; 熵: chapter03_math_basic/entropy.md
-      - 2.8. &nbsp; 小结: chapter03_math_basic/summary.md
-  - 3. &nbsp; 数字图像:
+      - 小结: chapter03_math_basic/summary.md
+  - 3. &nbsp; 数字图像基础:
       # [icon: material/shape-outline]
       - chapter04_number_image/index.md
       - 3.1. &nbsp; 像素&分辨率: chapter04_number_image/pixels_and_Resolution.md
-      - 3.2. &nbsp; 颜色模式: chapter04_number_image/color_mode.md
-      - 3.3. &nbsp; 频率与幅值: chapter04_number_image/frequency_and_amplitude.md
-      - 3.4. &nbsp; 灰度、通道和对比度: chapter04_number_image/grayscale_and_channel_and_contrast.md
-      - 3.5. &nbsp; 常用第三方库: chapter04_number_image/commonly_used_third-party_libraries.md
-      - 3.6. &nbsp; 取样和量化: chapter04_number_image/sampling_and_quantification.md
-      - 3.7. &nbsp; 直方图: chapter04_number_image/histogram.md
-      - 3.8. &nbsp; 卷积: chapter04_number_image/convolution.md
-      - 3.9. &nbsp; 滤波: chapter04_number_image/filtering.md
-      - 3.10. &nbsp; 小结: chapter04_number_image/summary.md
-  - 4. &nbsp; 图像滤波器:
+      - 3.2. &nbsp; 彩色图像: chapter04_number_image/color_image.md
+      - 3.3. &nbsp; 相机成像: chapter04_number_image/camera_imaging.md
+      - 3.4. &nbsp; 频率与幅值: chapter04_number_image/frequency_and_amplitude.md
+      - 3.5. &nbsp; 直方图: chapter04_number_image/histogram.md
+      - 小结: chapter04_number_image/summary.md
+  - 4. &nbsp; 数字图像滤波:
       # [icon: material/shape-outline]
       - chapter05_image_filter/index.md
-      - 4.1. &nbsp; 图像噪声: chapter05_image_filter/image_noise.md
-      - 4.2. &nbsp; 图像滤波: chapter05_image_filter/image_filter.md
-      - 4.3. &nbsp; 图像增强: chapter05_image_filter/image_enhancement.md
-      - 4.4. &nbsp; 小结: chapter05_image_filter/summary.md
+      - 4.1. &nbsp; 取样和量化: chapter05_image_filter/sampling_and_quantification.md
+      - 4.2. &nbsp; 卷积和滤波: chapter05_image_filter/convolution_and_filtering.md
+      - 4.4. &nbsp; 图像噪声: chapter05_image_filter/image_noise.md
+      - 4.5. &nbsp; 图像滤波: chapter05_image_filter/image_filter.md
+      - 4.6. &nbsp; 图像增强: chapter05_image_filter/image_enhancement.md
+      - 小结: chapter05_image_filter/summary.md
   - 5. &nbsp; 特征选择&特征提取:
       # [icon: material/shape-outline]
       - chapter06_feature_selection_and_feature_extraction/index.md
       - 4.1. &nbsp; 特征选择: chapter06_feature_selection_and_feature_extraction/feature_selection.md
       - 4.2. &nbsp; 特征提取: chapter06_feature_selection_and_feature_extraction/feature_extraction.md
       - 4.3. &nbsp; 边缘提取: chapter06_feature_selection_and_feature_extraction/edge_detection.md
-      - 4.4. &nbsp; 小结: chapter06_feature_selection_and_feature_extraction/summary.md
-  - 6. &nbsp; 附录:
+      - 小结: chapter06_feature_selection_and_feature_extraction/summary.md
+  - 附录:
       # [icon: material/help-circle-outline]
       - chapter_appendix/index.md
-      - 16.1. &nbsp; 编程环境安装: chapter_appendix/installation.md
-      - 16.2. &nbsp; 一起参与创作: chapter_appendix/contribution.md
-  - 参考文献:
-      - chapter_reference/index.md
+      - 编程环境安装: chapter_appendix/installation.md
+      - 常用第三方库: chapter_appendix/commonly_used_third-party_libraries.md
+      - 一起参与创作: chapter_appendix/contribution.md
+      - 常见问题: chapter_appendix/faq.md
+      - 参考文献: chapter_appendix/reference.md
