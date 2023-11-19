@@ -26,7 +26,7 @@
 
 常用的特征提取方法有很多，如主成分分析（PCA），独立成分分析（ICA），线性判别分析（LDA）等。其中，PCA 可以将 n 维特征映射到 k 维上，这 k 维是全新的正交特征。此外，对于带有类别标签的数据，一般可以考虑使用 LDA 降维。而在计算机视觉领域，一些传统的特征提取方法，如 SIFT (尺度不变特征变换)、HOG (方向梯度直方图)、SURF、ORB、LBP、HAAR 等也常被广泛应用。
 
-### 主成分分析 PCA(Principal Component Analysis)
+### PCA(Principal Component Analysis)
 
 #### 基本思想
 
@@ -81,7 +81,7 @@
 
     ![Alt text](feature_extraction.assets/PCA%E6%B1%82%E8%A7%A3%EF%BC%885%EF%BC%89.png)
 
-!!! quote
+!!! quote "对协方差矩阵求特征值与特征矩阵"
 
     [对协方差矩阵求特征值与特征矩阵](../chapter03_math_basic/matrix.md###特征值与特征向量计算)
 
